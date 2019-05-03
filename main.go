@@ -1,8 +1,6 @@
 package main
 
 import (
-	// "fmt"
-	// "github.com/teyotan/kargo-interview/model"
 	"github.com/teyotan/kargo-interview/service"
 	"github.com/gin-gonic/gin"
 )

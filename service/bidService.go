@@ -7,6 +7,7 @@ import (
 
 
 func GetBids(c *gin.Context) {
+	var asc bool
 	price := c.DefaultQuery("price", "ASC")
 
 	if price != "ASC" && price != "DESC" {
@@ -16,9 +17,26 @@ func GetBids(c *gin.Context) {
 		return
 	}
 
+	if price == "ASC" {
+		asc = true
+	} else {
+		asc = false
+	}
+
 	bids := model.GetBidData()
 
+	b := make([]interface{}, len(bids))
+	for i := range bids {
+		b[i] = bids[i]
+	}
+
+	b = QuickSort(b, getBidPrice, asc)
+
 	c.JSON(200, gin.H{
-		"data": bids,
+		"data": b,
 	})
+}
+
+func getBidPrice(bid interface{}) int{
+	return int(bid.(model.Bid).Price)
 }
