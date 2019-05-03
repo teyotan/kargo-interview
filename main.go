@@ -18,10 +18,4 @@ func main() {
 	r.GET("/getBids", service.GetBids)
 
 	r.Run() // listen and serve on 0.0.0.0:8080
-
-	// fmt.Println(model.GetUserData())
-	// fmt.Println()
-	// fmt.Println(model.GetJobData())
-	// fmt.Println()
-	// fmt.Println(model.GetBidData())
 }
